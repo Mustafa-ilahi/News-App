@@ -12,7 +12,7 @@ export default function Dashboard() {
     // sources
     fetch(`https://newsapi.org/v2/top-headlines/sources?apiKey=${apiKey}`)
     .then(res => res.json())
-    .then(res => console.log(res.sources))
+    .then(res => setSources(res.sources))
   }, []);
 
   return (
