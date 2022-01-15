@@ -8,6 +8,7 @@ import {
   ScrollView,
   Linking,
 } from 'react-native';
+import {Divider} from 'react-native-paper';
 export default function SelectedNews({route}) {
   const [content, setContent] = useState('');
   const [date, setDate] = useState('');
@@ -28,21 +29,26 @@ export default function SelectedNews({route}) {
     <ScrollView>
       <View style={styles.container}>
         <Text style={styles.sourceName}>{selectedNews.source.name}</Text>
-
+        <Divider style={styles.divider} />
         {selectedNews.author && (
           <>
             <Text style={styles.heading}>ᴀᴜᴛʜᴏʀ</Text>
             <Text style={styles.content}>{selectedNews.author}.</Text>
           </>
         )}
-
-        <Image source={{uri: selectedNews.urlToImage}} style={styles.image} />
-
+        {selectedNews.urlToImage ? (
+          <Image source={{uri: selectedNews.urlToImage}} style={styles.image} />
+        ) : (
+          <Image
+            source={{
+              uri: 'https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg',
+            }}
+            style={styles.image}
+          />
+        )}
         <Text style={styles.heading}>ᴛɪᴛʟᴇ</Text>
-
         <Text style={styles.content}>{selectedNews.title}.</Text>
         <Text style={styles.heading}>ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ</Text>
-
         <Text style={styles.content}>{selectedNews.description}</Text>
         {selectedNews.content && (
           <>
@@ -50,7 +56,6 @@ export default function SelectedNews({route}) {
             <Text style={styles.content}>{content}</Text>
           </>
         )}
-
         <Text style={styles.heading}>ᴘᴜʙʟɪꜱʜᴇᴅ ᴀᴛ</Text>
         <Text style={styles.publishedAt}>
           Date: <Text style={styles.dateTimeColor}>{date}</Text>
@@ -58,7 +63,6 @@ export default function SelectedNews({route}) {
         <Text style={styles.publishedAt}>
           Time: <Text style={{color: 'red'}}>{time}</Text>
         </Text>
-
         <Text style={styles.heading}>ꜱᴏᴜʀᴄᴇ</Text>
         <Text
           style={styles.source}
@@ -73,6 +77,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
   },
+  divider: {marginTop: Dimensions.get('window').height * 0.01},
   sourceName: {
     fontSize: 20,
     alignSelf: 'center',

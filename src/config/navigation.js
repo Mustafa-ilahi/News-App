@@ -4,7 +4,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useSelector} from 'react-redux';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Dashboard from '../components/Dashboard';
-import Home from '../components/Home';
 import SelectedNews from '../components/SelectedNews';
 import DrawerContent from '../components/DrawerContent';
 const Stack = createNativeStackNavigator();
@@ -15,7 +14,6 @@ export default function MainNavigator() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="NewsDrawer" component={NewsDrawer} />
-        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Dashboard" component={Dashboard} />
         <Stack.Screen name="SelectedNews" component={SelectedNews} />
       </Stack.Navigator>
@@ -23,10 +21,10 @@ export default function MainNavigator() {
   );
 }
 
-const NewsDrawer = ()=>{
+const NewsDrawer = () => {
   return (
     <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
-      <Drawer.Screen name="Dashboard" component={Dashboard} />
+      <Drawer.Screen name="ʜᴇᴀᴅʟɪɴᴇꜱ" component={Dashboard} />
     </Drawer.Navigator>
   );
-}
+};
