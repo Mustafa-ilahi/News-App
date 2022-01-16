@@ -14,7 +14,6 @@ import {useNavigation} from '@react-navigation/native';
 
 export default function Dashboard() {
   const navigation = useNavigation();
-  console.log(navigation);
   const [headlines, setHeadlines] = useState([]);
   const [searchQuery, setSearchQuery] = React.useState('');
   const [currentDate, setCurrentDate] = useState('');
@@ -60,6 +59,8 @@ export default function Dashboard() {
           onChangeText={onChangeSearch}
           value={searchQuery}
           style={styles.searchBar}
+          placeholderTextColor={'#474C72'}
+          iconColor="#474C72"
         />
         <Text style={styles.heading}>ᴛᴏᴘ ʜᴇᴀᴅʟɪɴᴇꜱ</Text>
         {headlines?.map((item, index) => {
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
   heading: {
     letterSpacing: 4,
     fontSize: 32,
-    color: '#000',
+    color: '#474C72',
     paddingBottom: 10,
     fontWeight: 'bold',
   },
@@ -115,15 +116,24 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     elevation: 10,
   },
-  title: {fontSize: 20, color: '#000'},
+  title: {
+    fontSize: 20,
+    color: '#474C72',
+    paddingTop: Dimensions.get('window').height * 0.02,
+    paddingLeft: Dimensions.get('window').width * 0.02,
+    fontWeight: 'bold',
+    fontFamily:"sans-serif-condensed"
+
+  },
   headlinesImg: {
     height: Dimensions.get('window').height * 0.3,
     width: Dimensions.get('window').width * 0.95,
     alignSelf: 'center',
+    borderRadius: Dimensions.get('window').width * 0.1
   },
   searchBar: {
-    backgroundColor: '#f9f9f9',
     borderWidth: 2,
+    borderColor: '#474C72',
     width: Dimensions.get('window').width * 0.96,
     marginTop: Dimensions.get('window').height * 0.02,
     marginBottom: Dimensions.get('window').height * 0.02,

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {
   View,
   StatusBar,
@@ -19,6 +19,8 @@ import {
 } from 'react-native-paper';
 import {ScrollView} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/AntDesign';
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+
 export default function DrawerContent(props) {
   const [sources, setSources] = useState([]);
   let apiKey = '0b30b3c5a1a54f7babb254d242ce3b2f';
@@ -29,9 +31,7 @@ export default function DrawerContent(props) {
       .then(res => res.json())
       .then(res => setSources(res));
   }, []);
-  useEffect(() => {
-    console.log(sources);
-  }, []);
+
   return (
     <ScrollView>
       <View style={{flex: 1}}>
@@ -41,24 +41,22 @@ export default function DrawerContent(props) {
             <Drawer.Section>
               <DrawerItem
                 icon={({color, size}) => (
-                  <Icon name="link" color={color} size={size} />
+                  <Icon name="link" color={'#474C72'} size={size} />
                 )}
                 label="ꜱᴏᴜʀᴄᴇꜱ"
                 labelStyle={styles.sources}
               />
+              <Divider />
               {sources?.sources?.map((item, index) => {
                 return (
-                  <>
-                    <Text key={index}style={styles.sourcesName}>{item.name}</Text>
+                  <Fragment key={index}>
+                    <Text style={styles.sourcesName}>• {item.name}</Text>
                     <Text
                       style={styles.sourcesLink}
                       onPress={() => Linking.openURL(item.url)}>
                       {item.url}
                     </Text>
-                    <Text style={styles.sourcesDescription}>
-                      {item.description}
-                    </Text>
-                  </>
+                  </Fragment>
                 );
               })}
             </Drawer.Section>
@@ -72,8 +70,8 @@ const styles = StyleSheet.create({
   sources: {
     letterSpacing: 2,
     fontSize: 20,
-    color: '#000',
-    fontWeight: '400',
+    color: '#474C72',
+    fontWeight: 'bold',
   },
   sourcesLink: {
     color: 'blue',

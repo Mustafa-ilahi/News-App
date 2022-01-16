@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -14,7 +14,6 @@ export default function SelectedNews({route}) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const selectedNews = route.params.selectedNews;
-  console.log(selectedNews);
   useEffect(() => {
     if (selectedNews.content) {
       setContent(selectedNews.content.split('[')[0]);
@@ -29,13 +28,7 @@ export default function SelectedNews({route}) {
     <ScrollView>
       <View style={styles.container}>
         <Text style={styles.sourceName}>{selectedNews.source.name}</Text>
-        <Divider style={styles.divider} />
-        {selectedNews.author && (
-          <>
-            <Text style={styles.heading}>ᴀᴜᴛʜᴏʀ</Text>
-            <Text style={styles.content}>{selectedNews.author}.</Text>
-          </>
-        )}
+        <Divider style={styles.line} />
         {selectedNews.urlToImage ? (
           <Image source={{uri: selectedNews.urlToImage}} style={styles.image} />
         ) : (
@@ -46,15 +39,21 @@ export default function SelectedNews({route}) {
             style={styles.image}
           />
         )}
+        {selectedNews.author && (
+          <Fragment>
+            <Text style={styles.heading}>ᴀᴜᴛʜᴏʀ</Text>
+            <Text style={styles.content}>{selectedNews.author}.</Text>
+          </Fragment>
+        )}
         <Text style={styles.heading}>ᴛɪᴛʟᴇ</Text>
         <Text style={styles.content}>{selectedNews.title}.</Text>
         <Text style={styles.heading}>ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ</Text>
         <Text style={styles.content}>{selectedNews.description}</Text>
         {selectedNews.content && (
-          <>
+          <Fragment>
             <Text style={styles.heading}>ᴄᴏɴᴛᴇɴᴛ</Text>
             <Text style={styles.content}>{content}</Text>
-          </>
+          </Fragment>
         )}
         <Text style={styles.heading}>ᴘᴜʙʟɪꜱʜᴇᴅ ᴀᴛ</Text>
         <Text style={styles.publishedAt}>
@@ -77,19 +76,23 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
   },
-  divider: {marginTop: Dimensions.get('window').height * 0.01},
+  line: {
+    marginBottom: Dimensions.get('window').height * 0.01,
+    marginTop: Dimensions.get('window').width * 0.03,
+  },
   sourceName: {
     fontSize: 20,
     alignSelf: 'center',
     paddingTop: 10,
     letterSpacing: 4,
-    color: '#000',
+    color: '#474C72',
     fontWeight: 'bold',
   },
+
   heading: {
     letterSpacing: 2,
     fontSize: 26,
-    color: '#000',
+    color: '#474C72',
     paddingTop: Dimensions.get('window').height * 0.01,
     paddingBottom: Dimensions.get('window').height * 0.003,
     paddingLeft: Dimensions.get('window').width * 0.03,
@@ -99,6 +102,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height * 0.3,
     width: Dimensions.get('window').width * 0.97,
     alignSelf: 'center',
+    borderRadius: Dimensions.get('window').width * 0.1,
   },
   source: {color: 'blue', paddingLeft: 10, paddingBottom: 10},
 
@@ -106,6 +110,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     padding: Dimensions.get('window').height * 0.015,
     paddingTop: 0,
+    color: '#888888',
+    fontFamily:"sans-serif-condensed"
   },
   publishedAt: {
     fontSize: 18,

@@ -23,7 +23,7 @@ export default function MainNavigator() {
 
 const NewsDrawer = () => {
   return (
-    <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
+    <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />} screenOptions={{headerTintColor:"#474C72"}}>
       <Drawer.Screen name="ʜᴇᴀᴅʟɪɴᴇꜱ" component={Dashboard} />
     </Drawer.Navigator>
   );
