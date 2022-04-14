@@ -59,10 +59,11 @@ export default function Dashboard() {
           onChangeText={onChangeSearch}
           value={searchQuery}
           style={styles.searchBar}
-          placeholderTextColor={'#474C72'}
-          iconColor="#474C72"
+          placeholderTextColor={'#fff'}
+          iconColor="#fff"
+          inputStyle={{color:'#fff'}}
         />
-        <Text style={styles.heading}>ᴛᴏᴘ ʜᴇᴀᴅʟɪɴᴇꜱ</Text>
+        <Text style={styles.heading}>Breaking News</Text>
         {headlines?.map((item, index) => {
           return (
             <View key={index} style={styles.newsView}>
@@ -96,46 +97,57 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#474C72',
   },
   heading: {
-    letterSpacing: 4,
-    fontSize: 32,
-    color: '#474C72',
+    fontSize: 22,
+    color: '#fff',
     paddingBottom: 10,
     fontWeight: 'bold',
+    textShadowColor: 'black',
+    textShadowOffset: {width: -1, height: 0},
+    textShadowRadius: 10,
   },
   newsView: {
-    paddingBottom: Dimensions.get('window').height * 0.05,
-    backgroundColor: '#fff',
-    borderRadius: 20,
-    padding: 10,
-    margin: 10,
-    borderColor: '#A9A9A9',
-    shadowOffset: {width: 5, height: 5},
-    shadowColor: 'black',
+    borderRadius: Dimensions.get('window').height * 0.02,
+    paddingLeft: Dimensions.get('window').height * 0.02,
+    paddingRight: Dimensions.get('window').height * 0.02,
+    margin: Dimensions.get('window').height * 0.02,
+    borderColor: '#fff',
+    shadowOffset: {width: 3, height: 3},
+    shadowColor: '#fff',
     shadowOpacity: 0.25,
     elevation: 10,
+    backgroundColor: '#474C72',
+    width: Dimensions.get('window').width * 0.9,
   },
   title: {
-    fontSize: 20,
-    color: '#474C72',
+    fontSize: 16,
+    textAlign: 'center',
+    justifyContent: 'center',
+    color: '#fff',
     paddingTop: Dimensions.get('window').height * 0.02,
-    paddingLeft: Dimensions.get('window').width * 0.02,
+    paddingBottom: Dimensions.get('window').height * 0.02,
     fontWeight: 'bold',
-    fontFamily:"sans-serif-condensed"
-
+    fontFamily: 'sans-serif-condensed',
+    textShadowColor: 'black',
+    textShadowOffset: {width: -1, height: 0},
+    textShadowRadius: 10,
   },
   headlinesImg: {
-    height: Dimensions.get('window').height * 0.3,
-    width: Dimensions.get('window').width * 0.95,
+    height: Dimensions.get('window').height * 0.25,
+    width: Dimensions.get('window').width * 0.9,
     alignSelf: 'center',
-    borderRadius: Dimensions.get('window').width * 0.1
+    borderTopLeftRadius: Dimensions.get('window').width * 0.05,
+    borderTopRightRadius: Dimensions.get('window').width * 0.05,
   },
   searchBar: {
-    borderWidth: 2,
-    borderColor: '#474C72',
+    borderWidth: 1,
+    borderColor: '#fff',
     width: Dimensions.get('window').width * 0.96,
     marginTop: Dimensions.get('window').height * 0.02,
     marginBottom: Dimensions.get('window').height * 0.02,
+    backgroundColor: '#474C72',
+    
   },
 });

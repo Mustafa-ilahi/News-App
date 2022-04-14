@@ -34,14 +34,14 @@ export default function DrawerContent(props) {
 
   return (
     <ScrollView>
-      <View style={{flex: 1}}>
+      <View style={styles.drawerContainer}>
         <DrawerContentScrollView {...props}>
           <View style={{flex: 1}}>
             <StatusBar animated="auto" />
             <Drawer.Section>
               <DrawerItem
                 icon={({color, size}) => (
-                  <Icon name="link" color={'#474C72'} size={size} />
+                  <Icon name="link" color={'#fff'} size={size} />
                 )}
                 label="ꜱᴏᴜʀᴄᴇꜱ"
                 labelStyle={styles.sources}
@@ -67,23 +67,36 @@ export default function DrawerContent(props) {
   );
 }
 const styles = StyleSheet.create({
+  drawerContainer: {flex: 1, backgroundColor: '#474C72'},
   sources: {
     letterSpacing: 2,
-    fontSize: 20,
-    color: '#474C72',
+    fontSize: 22,
+    color: '#fff',
     fontWeight: 'bold',
+    textShadowColor: 'black',
+    textShadowOffset: {width: -1, height: 0},
+    textShadowRadius: 10,
   },
   sourcesLink: {
-    color: 'blue',
-    paddingLeft: Dimensions.get('window').width * 0.04,
+    color: '#fff',
+    paddingLeft: Dimensions.get('window').width * 0.07,
+    textShadowColor: 'black',
+    textShadowOffset: {width: -1, height: 0},
+    textShadowRadius: 10,
+  
   },
   sourcesName: {
-    color: '#000',
+    color: '#fff',
     paddingLeft: Dimensions.get('window').width * 0.04,
     paddingTop: Dimensions.get('window').height * 0.035,
+    textShadowColor: 'black',
+    textShadowOffset: {width: -1, height: 0},
+    textShadowRadius: 10,
+    fontSize:16,
+    fontWeight:'bold'
   },
   sourcesDescription: {
-    color: '#000',
+    color: '#fff',
     paddingLeft: Dimensions.get('window').width * 0.04,
   },
 });
